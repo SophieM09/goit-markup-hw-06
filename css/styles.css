@@ -1,15 +1,19 @@
 
+
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     font-family: "Roboto", sans-serif;
     color: #434455;
     background-color: #ffffff;
-    font-size: 14px;
 }
 
 ul {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding-left: 0;
 }
 
 h1,
@@ -28,46 +32,62 @@ img {
     height: auto;
 }
 
+a {
+    text-decoration: none;
+}
 input {
     font-family: inherit;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
-    width: 100%;
-    padding: 0 16px;
-    margin: 0 auto;
+    max-width: 320px;
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        max-width: 768px;
+    }
+}
+
+@media screen and (min-width: 1158px) {
+    .container {
+        max-width: 1158px;
+        padding: 0 16px;
+        margin: 0 auto;
+    }
 }
 
 .page-header {
     border-bottom: 1px solid #e7e9fc;
     box-shadow: 0 1px 6px rgba(46, 47, 66, 0.08);
-    height: 56px;
+    background-color: #FFFFFF;
 }
 
 .header-container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
-    padding-top: 16px;
-    padding-bottom: 16px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.logo {
+.header-navigation {
+    display: flex;
+    align-items: center;
+}
+
+.header-logo {
     font-family: "Raleway", sans-serif;
     font-size: 18px;
     font-weight: 700;
     color: #4d5ae5;
-    text-decoration: none;
-    line-height: 1.2;
+    line-height: 1.17;
     letter-spacing: 0.03em;
     text-transform: uppercase;
-     
-}
-
-.logo,
-.nav-item,
-.contacts-item {
     padding: 16px 0;
 }
 
@@ -75,17 +95,38 @@ input {
     color: #2e2f42;
 }
 
-.navigation,
-.contacts {
+.burger-btn {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+}
+
+.burger-btn-icon {
+    display: block;
+    fill: #2f2f37;
+}
+
+.navigation {
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: #2e2f42;
+    display: none;
+    gap: 40px;
+    align-items: center;
+}
+
+.info {
     display: none;
 }
 
 .mobile-menu {
     position: fixed;
     top: 0;
-    left: 0;
+    right: 0;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-color: #ffffff;
     padding: 72px 16px 40px 16px;
     display: flex;
@@ -94,14 +135,220 @@ input {
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-     z-index: 999;
+    z-index: 999;
+    transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1), visibility 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.mobile-menu.is-open {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-}
+ .mobile-menu.is-open {
+     opacity: 1;
+     visibility: visible;
+     pointer-events: all;
+ }
+
+ .modal-close-btn {
+    display: none;
+ }
+
+ .mobile-menu.is-open .modal-close-btn {
+     position: absolute;
+     top: 24px;
+     right: 24px;
+     width: 24px;
+     height: 24px;
+     background-color: #e7e9fc;
+     border: none;
+     border-radius: 50%;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 0;
+     cursor: pointer;
+ }
+
+  .modal-close-btn .modal-close-icon {
+     stroke: #2E2F42;
+  }
+
+ .mobile-nav {
+     display: flex;
+     flex-direction: column;
+     align-items: baseline;
+     gap: 40px;
+     margin-bottom: 40px;
+ }
+
+ .nav-item {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.1;
+    letter-spacing: 0.02em;
+    color: #2E2F42;
+ }
+
+ .nav-item.current {
+    color: #4D5AE5;
+ }
+
+ .mobile-info {
+    margin-bottom: 40px;
+    text-align: left;
+    font-size: 20px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 1.2;
+    color: #434455;
+ }
+
+ .mobile-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin: 0;
+    padding: 0;
+ }
+
+ .contacts-item {
+    font-size: 20px;
+    font-weight: 500;
+    color: #434455;
+    text-decoration: none;
+ }
+
+ .contacts-item.accent-link {
+    color: #4d5ae5;
+    font-size: 20px;
+    font-weight: 700;
+ }
+
+ .mobile-socials {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0;
+    margin: 0;
+ }
+
+ .socials-icon {
+    width: 24px;
+    height: 24px;
+    fill: #FFFFFF;
+ }
+
+ .mobile-socials a {
+    width: 40px;
+    height: 40px;
+    background-color: #4D5AE5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+ }
+
+ .mobile-socials a:hover,
+ .mobile-socials a:focus {
+    background-color: #404BBF;
+ }
+
+ @media screen and (min-width: 768px) {
+     .burger-btn {
+         display: none;
+     }
+
+     .header-navigation{
+         display: flex;
+         align-items: center;
+     }
+
+     .navigation {
+         font-size: 16px;
+         font-weight: 500;
+         line-height: 1.5;
+         letter-spacing: 0.02em;
+         color: #2E2F42;
+         display: flex;
+         align-items: center;
+         gap: 40px;
+     }
+
+     .header-logo {
+        padding: 24px 0;
+        margin-right: 120px;
+     }
+
+     .nav-item {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 1.5;
+        letter-spacing: 0.02em;
+        padding: 24px 0;
+     }
+
+    .current {
+        position: relative;
+    }
+
+     .current::after {
+        content: "";
+        display: inline-block;
+        border-radius: 2px;
+        width: 100%;
+        height: 4px;
+        background-color: #404bbf;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+     }
+
+     .nav-item:hover,
+     .nav-item:focus {
+        color: #404bbf;
+     }
+
+     .info {
+        display: block;
+        font-style: normal;
+     }
+
+     .contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+     }
+
+     .contacts-item {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.12;
+        letter-spacing: 0.04em;
+        color: #434455;
+        transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+     }
+
+     .contacts-item:hover,
+     .contacts-item:focus {
+        color: #404bbf;
+     }
+ }
+
+ @media screen and (min-width: 1158px) {
+    .header-logo {
+        margin-right: 76px;
+    }
+
+    .contacts {
+        flex-direction: row;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .contacts-item {
+        font-size: 16px;
+        padding: 24px 0;
+        line-height: 1.5;
+        letter-spacing: 0.02em;
+    }
+ }
 
 .section {
     padding: 72px 0;
@@ -386,19 +633,18 @@ input {
 
 .subaccent {
     background-color: #2E2F42;
-    padding: 96px 16px;
+    padding: 96px 0;
 }
 
 .bottom-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 72px;
-    text-align: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 72px;  
 }
 
 .subaccent-container {
-    max-width: 264px;
+    text-align: center;
 }
 
 .subaccent-logo {
@@ -421,8 +667,19 @@ input {
     font-weight: 400;
     line-height: 1.5;
     letter-spacing: 0.02em;
-    text-align: justify;
+    text-align: start;
 }
+
+ .sub-socials-title {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    margin-bottom: 16px;
+    text-align: center;
+
+ }
 
 .subaccent-subscription {
     width: 100%;
@@ -432,13 +689,6 @@ input {
     align-items: center;
 }
 
-.sub-socials-title,
-.subscription-form-text {
-    color: #FFFFFF;
-    font-weight: 500;
-    font-size: 16px;
-    margin-bottom: 16px;
-}
 
 .subaccent-socials-list {
     display: flex;
@@ -513,32 +763,8 @@ input {
 }
 
 
-/* body {
-     font-family: "Roboto", sans-serif;
-     color: #434455;
-     background-color: #FFFFFF;
- }
-
- ul {
-     margin: 0;
-     padding: 0;
- }
-
- h1,
- h2,
- h3,
- h4,
- h5,
- h6,
- p {
-     margin: 0;
- }
-
- img {
-    display: block;
-    max-width: 100%;
-    height: auto;
- }
+/*  
+  
 
  input {
     font-family: inherit;
